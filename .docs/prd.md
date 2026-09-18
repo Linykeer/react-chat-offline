@@ -120,9 +120,9 @@ type Message = {
 ### Tarefa 1 — Tipos e Fundação
 > Criar os types base e preparar a estrutura de pastas.
 
-- [ ] Criar `src/types/chat.ts` com os types `Sender` e `Message`
-- [ ] Limpar o `App.tsx` padrão do Vite (remover conteúdo boilerplate)
-- [ ] Configurar o fundo marrom claro na página e o container centralizado `max-w-2xl`
+- [x] Criar `src/types/chat.ts` com os types `Sender` e `Message`
+- [x] Limpar o `App.tsx` padrão do Vite (remover conteúdo boilerplate)
+- [x] Configurar o fundo marrom claro na página e o container centralizado `max-w-2xl`
 
 ---
 
