@@ -86,11 +86,12 @@ src/
 ├── types/
 │   └── chat.ts              # Message type, Sender type
 ├── components/
+│   ├── Chat.tsx             # Container principal — state do chat + orquestração
 │   ├── ChatHistory.tsx       # Container do histórico de mensagens
 │   ├── MessageBubble.tsx     # Bolha individual de mensagem
 │   ├── ChatInput.tsx         # Card de input completo (textarea + toggle + botão)
 │   └── TypingIndicator.tsx   # Indicador animado de "digitando"
-├── App.tsx                   # Componente raiz — state do chat + layout
+├── App.tsx                   # Componente raiz — layout da página
 ├── App.css                   # Estilos globais (se necessário)
 ├── index.css                 # Tailwind imports
 └── main.tsx                  # Entry point
@@ -129,77 +130,77 @@ type Message = {
 ### Tarefa 2 — Componente `MessageBubble`
 > Componente de bolha de mensagem individual.
 
-- [ ] Criar `src/components/MessageBubble.tsx`
-- [ ] Props: recebe um objeto `Message`
-- [ ] Alinhar à direita quando `sender === "user"`, à esquerda quando `sender === "bot"`
-- [ ] Exibir texto da mensagem + horário formatado (HH:mm)
-- [ ] Estilo: fundo branco, cantos arredondados, sombra sutil
+- [x] Criar `src/components/MessageBubble.tsx`
+- [x] Props: recebe um objeto `Message`
+- [x] Alinhar à direita quando `sender === "user"`, à esquerda quando `sender === "bot"`
+- [x] Exibir texto da mensagem + horário formatado (HH:mm)
+- [x] Estilo: fundo branco, cantos arredondados, sombra sutil
 
 ---
 
 ### Tarefa 3 — Componente `ChatHistory`
 > Container scrollável que renderiza a lista de mensagens.
 
-- [ ] Criar `src/components/ChatHistory.tsx`
-- [ ] Props: recebe array de `Message[]`
-- [ ] Renderizar uma `MessageBubble` para cada mensagem
-- [ ] Scroll vertical quando o conteúdo exceder a viewport
-- [ ] Auto-scroll para o fundo ao receber nova mensagem (via `useEffect` + `ref`)
+- [x] Criar `src/components/ChatHistory.tsx`
+- [x] Props: recebe array de `Message[]`
+- [x] Renderizar uma `MessageBubble` para cada mensagem
+- [x] Scroll vertical quando o conteúdo exceder a viewport
+- [x] Auto-scroll para o fundo ao receber nova mensagem (via `useEffect` + `ref`)
 
 ---
 
 ### Tarefa 4 — Componente `ChatInput` (base)
 > Card de input com textarea e botão de enviar.
 
-- [ ] Criar `src/components/ChatInput.tsx`
-- [ ] Textarea multilinha com auto-resize (ajustar altura conforme conteúdo)
-- [ ] Botão de enviar no lado direito, desabilitado quando textarea vazio
-- [ ] Card fixo no fundo da tela, fundo branco, cantos arredondados
-- [ ] Props: callback `onSend(text: string, sender: Sender)`
+- [x] Criar `src/components/ChatInput.tsx`
+- [x] Textarea multilinha com auto-resize (ajustar altura conforme conteúdo)
+- [x] Botão de enviar no lado direito, desabilitado quando textarea vazio
+- [x] Card fixo no fundo da tela, fundo branco, cantos arredondados
+- [x] Props: callback `onSend(text: string, sender: Sender)`
 
 ---
 
 ### Tarefa 5 — Toggle Usuário / Robô
 > Adicionar o toggle dentro do `ChatInput`.
 
-- [ ] Botão com ícone + texto no lado esquerdo do card
-- [ ] State interno para o modo ativo (`user` | `bot`)
-- [ ] Quando `bot` ativo: borda do card muda para roxa
-- [ ] O sender enviado no `onSend` reflete o estado do toggle
+- [x] Botão com ícone + texto no lado esquerdo do card
+- [x] State interno para o modo ativo (`user` | `bot`)
+- [x] Quando `bot` ativo: borda do card muda para roxa
+- [x] O sender enviado no `onSend` reflete o estado do toggle
 
 ---
 
-### Tarefa 6 — Integração no `App.tsx`
-> Juntar tudo no componente raiz.
+### Tarefa 6 — Integração no `Chat.tsx`
+> Juntar tudo no componente de chat.
 
-- [ ] State `messages: Message[]` com `useState`
-- [ ] Função `handleSend` que cria uma nova `Message` e adiciona ao state
-- [ ] Renderizar `ChatHistory` com as mensagens
-- [ ] Renderizar `ChatInput` com o callback `onSend`
-- [ ] Layout completo: fundo marrom, container centralizado, input fixo no fundo
+- [x] State `messages: Message[]` com `useState` no `Chat.tsx`
+- [x] Função `handleSend` que cria uma nova `Message` e adiciona ao state
+- [x] Renderizar `ChatHistory` com as mensagens
+- [x] Renderizar `ChatInput` com o callback `onSend`
+- [x] `App.tsx` renderiza `Chat` dentro do layout (fundo marrom, container centralizado)
 
 ---
 
 ### Tarefa 7 — Indicador de "Digitando"
 > Simular delay e mostrar indicador antes da mensagem do robô aparecer.
 
-- [ ] Criar `src/components/TypingIndicator.tsx` com animação de "digitando" (3 bolinhas pulsantes)
-- [ ] No `App.tsx`, ao enviar mensagem como robô:
+- [x] Criar `src/components/TypingIndicator.tsx` com animação de "digitando" (3 bolinhas pulsantes)
+- [x] No `App.tsx`, ao enviar mensagem como robô:
   1. Ativar state `isTyping = true`
   2. Exibir `TypingIndicator` no final do histórico (lado esquerdo)
   3. Após delay (800ms–1500ms), adicionar a mensagem real e desativar `isTyping`
-- [ ] Auto-scroll ao exibir o indicador e ao exibir a mensagem final
+- [x] Auto-scroll ao exibir o indicador e ao exibir a mensagem final
 
 ---
 
 ### Tarefa 8 — Polimento Final
 > Ajustes visuais e de UX.
 
-- [ ] Revisar responsividade em telas pequenas
-- [ ] Garantir que o textarea limpa corretamente após envio
-- [ ] Garantir que o scroll funciona bem com muitas mensagens
-- [ ] Testar fluxo completo: enviar como usuário → toggle → enviar como robô (com delay) → toggle → enviar como usuário
-- [ ] Verificar build (`npm run build`) sem erros
+- [x] Revisar responsividade em telas pequenas
+- [x] Garantir que o textarea limpa corretamente após envio
+- [x] Garantir que o scroll funciona bem com muitas mensagens
+- [x] Testar fluxo completo: enviar como usuário → toggle → enviar como robô (com delay) → toggle → enviar como usuário
+- [x] Verificar build (`npm run build`) sem erros
 
 ---
 
